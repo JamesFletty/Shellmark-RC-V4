@@ -5,3 +5,11 @@ node_modules/
 coverage/
 dist/
 *.log
+
+data/
+artifacts/
+validator-workspaces/
+plugins/openclaw-indubitably/node_modules/
+plugins/openclaw-indubitably/dist/
+*.pem
+*.pem.pub

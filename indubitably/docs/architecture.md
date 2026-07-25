@@ -2,7 +2,9 @@
 
 ## System boundary
 
-Indubitably is a hybrid system. PostgreSQL is the operational source of truth for marketplace state. The chain is authoritative for escrowed value and emitted settlement events. Artifact storage is content-addressed and independently integrity-checked.
+Indubitably is a hybrid system. The target closed-marketplace architecture uses PostgreSQL as the operational source of truth, while the chain becomes authoritative for escrowed value and emitted settlement events. Artifact storage is content-addressed and independently integrity-checked.
+
+The executable Phase 0 service uses a single-writer, append-only file event store and local content-addressed artifacts. That adapter is intentionally replaceable and does not change the domain event or protocol-object contracts.
 
 ## Component diagram
 
@@ -38,7 +40,7 @@ Base RPC Providers --> Reorg-aware Chain Indexer --> Escrow Contracts
 
 ### API gateway
 
-Responsibilities:
+Target responsibilities:
 
 - Request authentication.
 - Signed-body verification.
@@ -47,6 +49,8 @@ Responsibilities:
 - Request-size limits.
 - Idempotency-key enforcement.
 - Transport-level logging without secret capture.
+
+Phase 0 currently implements signed-body verification, durable nonce replay prevention, body-size limits, and admin/agent authentication. Durable command idempotency and distributed rate limiting remain Phase 1 requirements.
 
 ### Agent registry
 
@@ -98,6 +102,14 @@ Requirements:
 - Alerts for any contract-to-ledger mismatch.
 
 ## Data stores
+
+### Phase 0
+
+- Hash-chained NDJSON event log: authoritative pilot state.
+- Local content-addressed artifact tree: bounded pilot evidence.
+- Durable JSON nonce store: request replay prevention.
+
+### Target closed marketplace
 
 - PostgreSQL: authoritative off-chain marketplace state.
 - Object storage: encrypted artifacts and evidence.

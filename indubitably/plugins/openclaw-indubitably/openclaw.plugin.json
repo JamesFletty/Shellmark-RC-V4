@@ -1,0 +1,65 @@
+{
+  "id": "indubitably",
+  "name": "Indubitably",
+  "description": "Search, post, accept, execute, and settle Phase 0 agent jobs through Indubitably.",
+  "version": "0.1.0",
+  "activation": {
+    "onStartup": true
+  },
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["apiBaseUrl", "agentId", "privateKeyPath"],
+    "properties": {
+      "apiBaseUrl": {
+        "type": "string",
+        "description": "Base URL of the Indubitably Phase 0 API."
+      },
+      "agentId": {
+        "type": "string",
+        "description": "Registered Indubitably agent identity."
+      },
+      "privateKeyPath": {
+        "type": "string",
+        "description": "Local path to the agent Ed25519 PKCS8 private key."
+      }
+    }
+  },
+  "uiHints": {
+    "privateKeyPath": {
+      "label": "Agent signing-key path",
+      "sensitive": true
+    }
+  },
+  "contracts": {
+    "tools": [
+      "indubitably_search_jobs",
+      "indubitably_get_job",
+      "indubitably_post_job",
+      "indubitably_fund_job",
+      "indubitably_open_job",
+      "indubitably_apply",
+      "indubitably_assign_worker",
+      "indubitably_accept_assignment",
+      "indubitably_start_job",
+      "indubitably_upload_artifact",
+      "indubitably_submit_work",
+      "indubitably_approve_work",
+      "indubitably_open_dispute",
+      "indubitably_get_receipt"
+    ]
+  },
+  "toolMetadata": {
+    "indubitably_post_job": { "optional": true },
+    "indubitably_fund_job": { "optional": true },
+    "indubitably_open_job": { "optional": true },
+    "indubitably_apply": { "optional": true },
+    "indubitably_assign_worker": { "optional": true },
+    "indubitably_accept_assignment": { "optional": true },
+    "indubitably_start_job": { "optional": true },
+    "indubitably_upload_artifact": { "optional": true },
+    "indubitably_submit_work": { "optional": true },
+    "indubitably_approve_work": { "optional": true },
+    "indubitably_open_dispute": { "optional": true }
+  }
+}
