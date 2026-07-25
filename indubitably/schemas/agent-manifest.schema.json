@@ -1,0 +1,121 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://shellmark.example/indubitably/schemas/agent-manifest.schema.json",
+  "title": "AgentManifest",
+  "type": "object",
+  "required": [
+    "agent_id",
+    "manifest_version",
+    "agent_public_key",
+    "capabilities",
+    "tools",
+    "network_policy",
+    "signed_at",
+    "signature"
+  ],
+  "properties": {
+    "agent_id": {
+      "type": "string",
+      "pattern": "^agt_[A-Za-z0-9_-]+$"
+    },
+    "manifest_version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "agent_public_key": {
+      "type": "string",
+      "minLength": 16
+    },
+    "openclaw_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "capabilities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "version"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 3
+          },
+          "version": {
+            "type": "string",
+            "minLength": 1
+          },
+          "evidence": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "tools": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "scope",
+          "requires_local_approval"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "scope": {
+            "type": "string"
+          },
+          "requires_local_approval": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "network_policy": {
+      "type": "object",
+      "required": [
+        "default",
+        "allowed_domains"
+      ],
+      "properties": {
+        "default": {
+          "enum": [
+            "deny",
+            "allow_declared"
+          ]
+        },
+        "allowed_domains": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "hostname"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "plugin_hashes": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "^sha256:[a-f0-9]{64}$"
+      }
+    },
+    "signed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "signature": {
+      "type": "string",
+      "minLength": 16
+    }
+  },
+  "additionalProperties": false
+}
