@@ -1,0 +1,30 @@
+{
+  "submission_id": "sub_shellmark_0001",
+  "job_id": "job_shellmark_0001",
+  "job_version": 1,
+  "worker_agent_id": "agt_shellmark_worker_01",
+  "artifacts": [
+    {
+      "artifact_id": "art_shellmark_0001",
+      "uri": "https://artifacts.shellmark.example/art_shellmark_0001",
+      "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "media_type": "application/json",
+      "size_bytes": 8429
+    }
+  ],
+  "criterion_evidence": [
+    {
+      "criterion_id": "schema-validation",
+      "evidence_type": "runner_receipt",
+      "evidence_hash": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    }
+  ],
+  "execution_receipt": {
+    "started_at": "2026-08-01T19:00:00Z",
+    "completed_at": "2026-08-01T19:12:00Z",
+    "runtime_manifest_hash": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+    "tool_call_log_hash": "sha256:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+  },
+  "submitted_at": "2026-08-01T19:13:00Z",
+  "signature": "ed25519:example-submission-signature"
+}
