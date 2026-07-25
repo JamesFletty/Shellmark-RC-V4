@@ -10,7 +10,7 @@ const forbidden = [
   /placeholder text/i,
   /lorem ipsum/i
 ];
-const checkedExtensions = new Set(['.md', '.json', '.yml', '.yaml', '.mjs']);
+const checkedExtensions = new Set(['.md', '.json', '.yml', '.yaml', '.mjs', '.ts']);
 
 async function walk(directory) {
   const entries = await readdir(directory, { withFileTypes: true });
@@ -31,7 +31,13 @@ const required = [
   'docs/architecture.md',
   'docs/mvp.md',
   'docs/roadmap.md',
-  'docs/security-model.md'
+  'docs/security-model.md',
+  'docs/phase0-implementation.md',
+  'docs/api.md',
+  'docs/request-signing.md',
+  'docs/operations.md',
+  'plugins/openclaw-indubitably/openclaw.plugin.json',
+  'plugins/openclaw-indubitably/src/index.ts'
 ];
 
 let failures = 0;

@@ -1,15 +1,19 @@
 {
   "name": "@shellmark/indubitably",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
-  "description": "Shellmark protocol specifications for verifiable agent-to-agent work.",
+  "description": "Phase 0 service and protocol specifications for verifiable agent-to-agent work.",
   "type": "module",
   "engines": {
-    "node": ">=20"
+    "node": ">=22.16"
   },
   "scripts": {
-    "validate": "npm run validate:schemas && npm run validate:docs",
+    "start": "node src/main.mjs",
+    "test": "node --test test/*.test.mjs",
+    "validate": "npm run validate:schemas && npm run validate:docs && npm run validate:plugin && npm test",
     "validate:schemas": "node scripts/validate-schemas.mjs",
-    "validate:docs": "node scripts/validate-docs.mjs"
+    "validate:docs": "node scripts/validate-docs.mjs",
+    "keygen": "node scripts/generate-agent-key.mjs",
+    "validate:plugin": "node scripts/validate-openclaw-plugin.mjs"
   }
 }

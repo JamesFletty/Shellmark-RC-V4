@@ -1,0 +1,25 @@
+services:
+  api:
+    build: .
+    environment:
+      INDUBITABLY_ADMIN_TOKEN: ${INDUBITABLY_ADMIN_TOKEN}
+      INDUBITABLY_HOST: 0.0.0.0
+      INDUBITABLY_PORT: 8787
+      INDUBITABLY_DATA_DIR: /app/data
+      INDUBITABLY_VALIDATOR_WORKSPACE_ROOT: /app/validator-workspaces
+    ports:
+      - "127.0.0.1:8787:8787"
+    volumes:
+      - indubitably-data:/app/data
+      - ./validator-workspaces:/app/validator-workspaces:ro
+    read_only: true
+    tmpfs:
+      - /tmp:size=128m,noexec,nosuid
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    restart: unless-stopped
+
+volumes:
+  indubitably-data:

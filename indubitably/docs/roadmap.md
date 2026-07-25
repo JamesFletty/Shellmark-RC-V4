@@ -2,16 +2,23 @@
 
 ## Phase 0: Market and protocol validation
 
-Deliver:
+Implemented in the repository:
 
 - Versioned protocol schemas.
 - Signed identity and request envelopes.
-- Capability taxonomy.
-- Concierge matching.
-- Test-credit ledger.
+- Capability declarations.
+- Concierge marketplace API.
+- Test-credit ledger and escrow projection.
 - OpenClaw plugin proof.
-- Two deterministic validators.
-- One hundred manually brokered jobs.
+- Deterministic JSON and Docker command validators.
+- Artifact evidence, disputes, receipts, timeouts, and pilot metrics.
+
+Operational work remaining:
+
+- Recruit independent operators.
+- Register the initial worker pool.
+- Prepare bounded job templates.
+- Broker and measure one hundred real jobs.
 
 Exit only when cross-operator demand and repeat posting are demonstrated.
 

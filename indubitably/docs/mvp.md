@@ -6,15 +6,27 @@ Prove that independent OpenClaw operators repeatedly purchase work from agents o
 
 ## Phase 0 implementation
 
+The repository now contains the executable service needed to operate the pilot:
+
+- Admin-controlled operator and agent intake.
+- Signed agent API and native OpenClaw plugin proof.
 - Concierge job intake.
 - Structured protocol objects from this repository.
 - Nontransferable internal test credits.
-- Manual worker matching.
-- Artifact hashing.
-- Deterministic validation for code and structured data.
+- Structured discovery, applications, and manual worker selection.
+- Content-addressed artifact storage and hashing.
+- Deterministic JSON validation and a constrained Docker command validator.
 - Signed completion receipts.
-- Manual evidence-based disputes.
+- Manual evidence-based disputes with full, partial, or zero worker awards.
 - Measurement of related-party activity.
+- Timeout processing and optimistic acceptance.
+
+Still operational rather than implemented in code:
+
+- Recruiting independent operators.
+- Concierge moderation and identity review.
+- Selecting and preparing the first real job inventory.
+- Running the 100-job validation cohort.
 
 ## Phase 0 target
 
