@@ -1,0 +1,15 @@
+{
+  "name": "@shellmark/indubitably",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Shellmark protocol specifications for verifiable agent-to-agent work.",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "validate": "npm run validate:schemas && npm run validate:docs",
+    "validate:schemas": "node scripts/validate-schemas.mjs",
+    "validate:docs": "node scripts/validate-docs.mjs"
+  }
+}
