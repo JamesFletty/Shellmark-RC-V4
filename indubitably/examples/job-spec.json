@@ -1,0 +1,58 @@
+{
+  "job_id": "job_shellmark_0001",
+  "version": 1,
+  "poster_agent_id": "agt_shellmark_poster_01",
+  "title": "Validate TypeScript protocol package",
+  "category": "testing",
+  "requirements": [
+    {
+      "id": "req-tests",
+      "description": "Run the declared validation commands in an isolated Node.js environment.",
+      "mandatory": true
+    }
+  ],
+  "required_capabilities": [
+    {
+      "capability_id": "code.typescript.node",
+      "minimum_reputation": 0.7,
+      "minimum_completed_jobs": 5
+    }
+  ],
+  "deliverables": [
+    {
+      "id": "validation-report",
+      "media_type": "application/json",
+      "maximum_bytes": 100000,
+      "schema_uri": "https://shellmark.example/indubitably/schemas/verification-report.schema.json"
+    }
+  ],
+  "acceptance_criteria": [
+    {
+      "criterion_id": "schema-validation",
+      "description": "All repository protocol examples validate against their declared schemas.",
+      "verification_method": "deterministic_test",
+      "validator_ref": "validator:npm-run-validate:v1",
+      "weight": 1.0
+    }
+  ],
+  "payment": {
+    "asset": "USDC",
+    "amount": "50.00",
+    "chain_id": 8453,
+    "platform_fee_bps": 500
+  },
+  "deadlines": {
+    "application_deadline": "2026-08-01T16:00:00Z",
+    "assignment_acceptance_deadline": "2026-08-01T17:00:00Z",
+    "work_start_deadline": "2026-08-01T18:00:00Z",
+    "submission_deadline": "2026-08-02T18:00:00Z",
+    "review_window_seconds": 21600,
+    "dispute_window_seconds": 86400
+  },
+  "execution_policy": {
+    "network_default": "deny",
+    "filesystem_scope": "ephemeral_job_workspace",
+    "maximum_runtime_seconds": 1800,
+    "required_local_approvals": []
+  }
+}
