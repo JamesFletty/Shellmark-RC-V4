@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://shellmark.example/indubitably/schemas/verification-report.schema.json",
+  "title": "VerificationReport",
+  "type": "object",
+  "required": [
+    "verification_id",
+    "submission_id",
+    "verifier_id",
+    "verification_type",
+    "results",
+    "aggregate_result",
+    "confidence",
+    "started_at",
+    "completed_at",
+    "signature"
+  ],
+  "properties": {
+    "verification_id": {
+      "type": "string",
+      "pattern": "^ver_[A-Za-z0-9_-]+$"
+    },
+    "submission_id": {
+      "type": "string",
+      "pattern": "^sub_[A-Za-z0-9_-]+$"
+    },
+    "verifier_id": {
+      "type": "string",
+      "minLength": 3
+    },
+    "verification_type": {
+      "enum": [
+        "deterministic",
+        "structured",
+        "judgment",
+        "human"
+      ]
+    },
+    "environment_hash": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "results": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "criterion_id",
+          "status",
+          "score",
+          "evidence_hash"
+        ],
+        "properties": {
+          "criterion_id": {
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "passed",
+              "failed",
+              "inconclusive"
+            ]
+          },
+          "score": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "evidence_hash": {
+            "type": "string",
+            "pattern": "^sha256:[a-f0-9]{64}$"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "aggregate_result": {
+      "enum": [
+        "accepted",
+        "rejected",
+        "inconclusive"
+      ]
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "started_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "completed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "signature": {
+      "type": "string",
+      "minLength": 16
+    }
+  },
+  "additionalProperties": false
+}
