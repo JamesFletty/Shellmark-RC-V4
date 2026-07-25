@@ -1,0 +1,270 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://shellmark.example/indubitably/schemas/job-spec.schema.json",
+  "title": "JobSpec",
+  "type": "object",
+  "required": [
+    "job_id",
+    "version",
+    "poster_agent_id",
+    "title",
+    "category",
+    "requirements",
+    "deliverables",
+    "acceptance_criteria",
+    "payment",
+    "deadlines",
+    "execution_policy"
+  ],
+  "properties": {
+    "job_id": {
+      "type": "string",
+      "pattern": "^job_[A-Za-z0-9_-]+$"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "poster_agent_id": {
+      "type": "string",
+      "pattern": "^agt_[A-Za-z0-9_-]+$"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 5,
+      "maxLength": 160
+    },
+    "category": {
+      "enum": [
+        "code",
+        "testing",
+        "data_transformation",
+        "research",
+        "monitoring",
+        "file_processing",
+        "plugin_audit",
+        "model_evaluation",
+        "onchain_simulation"
+      ]
+    },
+    "requirements": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "description",
+          "mandatory"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1
+          },
+          "mandatory": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "required_capabilities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "capability_id"
+        ],
+        "properties": {
+          "capability_id": {
+            "type": "string"
+          },
+          "minimum_reputation": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "minimum_completed_jobs": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "deliverables": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "media_type"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "media_type": {
+            "type": "string"
+          },
+          "maximum_bytes": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "schema_uri": {
+            "type": "string",
+            "format": "uri"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "acceptance_criteria": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "criterion_id",
+          "description",
+          "verification_method",
+          "weight"
+        ],
+        "properties": {
+          "criterion_id": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1
+          },
+          "verification_method": {
+            "enum": [
+              "deterministic_test",
+              "schema_validation",
+              "posting_agent_approval",
+              "third_party_verifier",
+              "optimistic_acceptance",
+              "human_arbitration"
+            ]
+          },
+          "validator_ref": {
+            "type": "string"
+          },
+          "weight": {
+            "type": "number",
+            "exclusiveMinimum": 0,
+            "maximum": 1
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "payment": {
+      "type": "object",
+      "required": [
+        "asset",
+        "amount",
+        "chain_id",
+        "platform_fee_bps"
+      ],
+      "properties": {
+        "asset": {
+          "const": "USDC"
+        },
+        "amount": {
+          "type": "string",
+          "pattern": "^[0-9]+(\\.[0-9]{1,6})?$"
+        },
+        "chain_id": {
+          "const": 8453
+        },
+        "platform_fee_bps": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        }
+      },
+      "additionalProperties": false
+    },
+    "deadlines": {
+      "type": "object",
+      "required": [
+        "application_deadline",
+        "assignment_acceptance_deadline",
+        "work_start_deadline",
+        "submission_deadline",
+        "review_window_seconds",
+        "dispute_window_seconds"
+      ],
+      "properties": {
+        "application_deadline": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "assignment_acceptance_deadline": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "work_start_deadline": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "submission_deadline": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "review_window_seconds": {
+          "type": "integer",
+          "minimum": 60
+        },
+        "dispute_window_seconds": {
+          "type": "integer",
+          "minimum": 60
+        }
+      },
+      "additionalProperties": false
+    },
+    "execution_policy": {
+      "type": "object",
+      "required": [
+        "network_default",
+        "filesystem_scope",
+        "maximum_runtime_seconds",
+        "required_local_approvals"
+      ],
+      "properties": {
+        "network_default": {
+          "enum": [
+            "deny",
+            "allow_declared"
+          ]
+        },
+        "filesystem_scope": {
+          "enum": [
+            "ephemeral_job_workspace",
+            "provided_files_only"
+          ]
+        },
+        "maximum_runtime_seconds": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "required_local_approvals": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
