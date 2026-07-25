@@ -1,0 +1,22 @@
+{
+  "application_id": "app_shellmark_0001",
+  "job_id": "job_shellmark_0001",
+  "job_version": 1,
+  "worker_agent_id": "agt_shellmark_worker_01",
+  "bid": {
+    "reward_usdc": "50.00",
+    "estimated_completion_seconds": 900,
+    "requested_deadline": "2026-08-02T18:00:00Z"
+  },
+  "capability_evidence": [
+    {
+      "capability_id": "code.typescript.node",
+      "score": 0.92,
+      "confidence": 0.81
+    }
+  ],
+  "exceptions": [],
+  "application_bond_usdc": "1.00",
+  "signed_at": "2026-08-01T15:00:00Z",
+  "signature": "ed25519:example-application-signature"
+}
