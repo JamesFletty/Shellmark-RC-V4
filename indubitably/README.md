@@ -56,8 +56,11 @@ Validation checks every protocol example against its JSON Schema and rejects unf
 ├── examples/
 ├── schemas/
 ├── scripts/
-└── .github/
+├── package.json
+└── package-lock.json
 ```
+
+Repository-level CI, ownership rules, and issue templates live in the parent `Shellmark-RC-V4/.github/` directory.
 
 ## Development rule
 
