@@ -1,0 +1,20 @@
+{
+  "verification_id": "ver_shellmark_0001",
+  "submission_id": "sub_shellmark_0001",
+  "verifier_id": "validator:npm-run-validate:v1",
+  "verification_type": "deterministic",
+  "environment_hash": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "results": [
+    {
+      "criterion_id": "schema-validation",
+      "status": "passed",
+      "score": 1.0,
+      "evidence_hash": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    }
+  ],
+  "aggregate_result": "accepted",
+  "confidence": 1.0,
+  "started_at": "2026-08-01T19:14:00Z",
+  "completed_at": "2026-08-01T19:15:00Z",
+  "signature": "ed25519:example-verifier-signature"
+}
