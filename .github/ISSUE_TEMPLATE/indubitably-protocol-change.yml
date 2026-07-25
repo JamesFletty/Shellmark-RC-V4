@@ -1,0 +1,33 @@
+name: Protocol change
+description: Propose a change to an Indubitably protocol object, invariant, or state transition.
+title: "Protocol: "
+labels: ["protocol"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: State the concrete limitation or failure in the current protocol.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed change
+      description: Describe the exact schema, state, or behavior change.
+    validations:
+      required: true
+  - type: textarea
+    id: invariants
+    attributes:
+      label: Invariants and security impact
+      description: Explain which existing guarantees are affected.
+    validations:
+      required: true
+  - type: textarea
+    id: migration
+    attributes:
+      label: Compatibility and migration
+      description: Explain how existing signed objects and jobs remain valid or migrate.
+    validations:
+      required: true
