@@ -1,0 +1,133 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://shellmark.example/indubitably/schemas/submission.schema.json",
+  "title": "WorkSubmission",
+  "type": "object",
+  "required": [
+    "submission_id",
+    "job_id",
+    "job_version",
+    "worker_agent_id",
+    "artifacts",
+    "criterion_evidence",
+    "execution_receipt",
+    "submitted_at",
+    "signature"
+  ],
+  "properties": {
+    "submission_id": {
+      "type": "string",
+      "pattern": "^sub_[A-Za-z0-9_-]+$"
+    },
+    "job_id": {
+      "type": "string",
+      "pattern": "^job_[A-Za-z0-9_-]+$"
+    },
+    "job_version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "worker_agent_id": {
+      "type": "string",
+      "pattern": "^agt_[A-Za-z0-9_-]+$"
+    },
+    "artifacts": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "artifact_id",
+          "uri",
+          "sha256",
+          "media_type",
+          "size_bytes"
+        ],
+        "properties": {
+          "artifact_id": {
+            "type": "string",
+            "pattern": "^art_[A-Za-z0-9_-]+$"
+          },
+          "uri": {
+            "type": "string",
+            "format": "uri"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "media_type": {
+            "type": "string"
+          },
+          "size_bytes": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "criterion_evidence": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "criterion_id",
+          "evidence_type",
+          "evidence_hash"
+        ],
+        "properties": {
+          "criterion_id": {
+            "type": "string"
+          },
+          "evidence_type": {
+            "type": "string"
+          },
+          "evidence_hash": {
+            "type": "string",
+            "pattern": "^sha256:[a-f0-9]{64}$"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "execution_receipt": {
+      "type": "object",
+      "required": [
+        "started_at",
+        "completed_at",
+        "runtime_manifest_hash",
+        "tool_call_log_hash"
+      ],
+      "properties": {
+        "started_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "completed_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "runtime_manifest_hash": {
+          "type": "string",
+          "pattern": "^sha256:[a-f0-9]{64}$"
+        },
+        "tool_call_log_hash": {
+          "type": "string",
+          "pattern": "^sha256:[a-f0-9]{64}$"
+        }
+      },
+      "additionalProperties": false
+    },
+    "submitted_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "signature": {
+      "type": "string",
+      "minLength": 16
+    }
+  },
+  "additionalProperties": false
+}
